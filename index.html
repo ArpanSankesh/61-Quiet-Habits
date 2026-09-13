@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>61 Quiet Habits</title>
+  <meta name="description" content="61 quiet habits that can quietly rebuild your life, one small decision at a time." />
+  <style>
+    :root {
+      --bg: #f7f6f2;
+      --text: #171717;
+      --muted: #73716b;
+      --card: #ffffff;
+      --line: #e7e5df;
+      --accent: #171717;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .wrap {
+      width: min(1080px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      min-height: 82vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 80px 0 70px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    h1 {
+      max-width: 850px;
+      margin: 0 auto;
+      font-size: clamp(48px, 8vw, 92px);
+      line-height: .98;
+      letter-spacing: -.065em;
+      font-weight: 750;
+    }
+
+    .hero-copy {
+      max-width: 680px;
+      margin: 30px auto 0;
+      color: #55534e;
+      font-size: clamp(17px, 2vw, 21px);
+    }
+
+    .scroll {
+      display: inline-block;
+      margin-top: 48px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      border-bottom: 1px solid #bbb8b0;
+      padding-bottom: 5px;
+    }
+
+    .intro {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 70px 0;
+    }
+
+    .intro p {
+      max-width: 820px;
+      margin: 0 auto;
+      font-size: clamp(24px, 4vw, 42px);
+      line-height: 1.2;
+      letter-spacing: -.035em;
+    }
+
+    .intro strong { font-weight: 700; }
+
+    .habits-section {
+      padding: 90px 0 110px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+      margin-bottom: 35px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(30px, 5vw, 52px);
+      line-height: 1;
+      letter-spacing: -.045em;
+    }
+
+    .section-heading span {
+      color: var(--muted);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .habits {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .habit {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 18px;
+      align-items: start;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 23px 22px;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+
+    .habit:hover {
+      transform: translateY(-3px);
+      border-color: #d4d1c8;
+      box-shadow: 0 12px 30px rgba(0,0,0,.045);
+    }
+
+    .number {
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      font-size: 13px;
+      font-weight: 700;
+      padding-top: 3px;
+    }
+
+    .habit p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.45;
+      letter-spacing: -.01em;
+    }
+
+    .closing {
+      border-top: 1px solid var(--line);
+      padding: 110px 0 120px;
+      text-align: center;
+    }
+
+    .closing blockquote {
+      max-width: 850px;
+      margin: 0 auto;
+      font-size: clamp(32px, 5vw, 58px);
+      line-height: 1.08;
+      letter-spacing: -.045em;
+    }
+
+    .closing .small {
+      max-width: 590px;
+      margin: 28px auto 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 25px 0 35px;
+      color: var(--muted);
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+
+    .habit { cursor: pointer; }
+    .habit::after { content: "↗"; position: absolute; right: 18px; bottom: 15px; color: #aaa; font-size: 13px; opacity: 0; transition: opacity .2s; }
+    .habit { position: relative; }
+    .habit:hover::after { opacity: 1; }
+    .modal-backdrop { position: fixed; inset: 0; background: rgba(20,20,18,.38); backdrop-filter: blur(7px); display: grid; place-items: center; padding: 20px; opacity: 0; visibility: hidden; transition: opacity .22s ease, visibility .22s ease; z-index: 20; }
+    .modal-backdrop.open { opacity: 1; visibility: visible; }
+    .modal { width: min(620px, 100%); background: #fff; border-radius: 24px; padding: 34px; box-shadow: 0 25px 80px rgba(0,0,0,.18); transform: translateY(12px) scale(.98); transition: transform .22s ease; position: relative; }
+    .modal-backdrop.open .modal { transform: translateY(0) scale(1); }
+    .modal-number { color: #88857d; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .modal h3 { margin: 10px 40px 14px 0; font-size: clamp(25px, 5vw, 36px); line-height: 1.08; letter-spacing: -.04em; }
+    .modal p { margin: 0; color: #55534e; font-size: 17px; line-height: 1.65; }
+    .close { position: absolute; top: 17px; right: 17px; width: 38px; height: 38px; border: 0; border-radius: 50%; background: #f2f1ed; color: #333; font-size: 20px; cursor: pointer; }
+    .close:hover { background: #e8e6df; }
+
+    @media (max-width: 700px) {
+      .wrap { width: min(100% - 28px, 1080px); }
+
+      header {
+        min-height: 76vh;
+        padding: 55px 0;
+      }
+
+      .intro { padding: 55px 0; }
+
+      .habits-section { padding: 65px 0 80px; }
+
+      .habits { grid-template-columns: 1fr; }
+
+      .section-heading {
+        align-items: start;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .habit {
+        grid-template-columns: 38px 1fr;
+        padding: 19px 17px;
+      }
+
+      .closing { padding: 80px 0 90px; }
+
+      footer {
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .habit {
+        animation: rise .6s both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 20%;
+      }
+
+      @keyframes rise {
+        from { opacity: 0; transform: translateY(18px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <div class="eyebrow">A quiet reset</div>
+      <h1>61 Quiet Habits That Rebuilt My Life</h1>
+      <p class="hero-copy">
+        Nobody claps when you fix your life. There's no finish line, no trophy,
+        no announcement. It happens in silence, one small decision at a time.
+      </p>
+      <a class="scroll" href="#habits">Explore the 61 habits ↓</a>
+    </div>
+  </header>
+
+  <section class="intro">
+    <div class="wrap">
+      <p>
+        <strong>While everyone else is waiting for motivation to strike,
+        your life can change quietly.</strong>
+        One decision. One habit. One ordinary day at a time.
+      </p>
+    </div>
+  </section>
+
+  <main id="habits" class="habits-section">
+    <div class="wrap">
+      <div class="section-heading">
+        <h2>The 61 habits</h2>
+        <span>Small things. Repeated often.</span>
+      </div>
+
+      <div class="habits">
+        <article class="habit"><span class="number">01</span><p>Drink water before coffee.</p></article>
+        <article class="habit"><span class="number">02</span><p>Leave 10 minutes of empty space in your schedule.</p></article>
+        <article class="habit"><span class="number">03</span><p>Write down tomorrow's top three tasks tonight.</p></article>
+        <article class="habit"><span class="number">04</span><p>Stop explaining yourself to people who didn't ask.</p></article>
+        <article class="habit"><span class="number">05</span><p>Walk without your phone once a day.</p></article>
+        <article class="habit"><span class="number">06</span><p>Say what you mean the first time.</p></article>
+        <article class="habit"><span class="number">07</span><p>Keep a water bottle on your desk always.</p></article>
+        <article class="habit"><span class="number">08</span><p>Do the ugly task first, not last.</p></article>
+        <article class="habit"><span class="number">09</span><p>Stretch before you scroll.</p></article>
+        <article class="habit"><span class="number">10</span><p>Delete one app that steals your hours.</p></article>
+        <article class="habit"><span class="number">11</span><p>Eat slower, you'll eat less and think clearer.</p></article>
+        <article class="habit"><span class="number">12</span><p>Keep your phone out of the bedroom.</p></article>
+        <article class="habit"><span class="number">13</span><p>Write one page a day, no editing.</p></article>
+        <article class="habit"><span class="number">14</span><p>Say thank you and mean it.</p></article>
+        <article class="habit"><span class="number">15</span><p>Stop multitasking, it's just switching poorly.</p></article>
+        <article class="habit"><span class="number">16</span><p>Take the stairs when you can.</p></article>
+        <article class="habit"><span class="number">17</span><p>Clean your space before you start work.</p></article>
+        <article class="habit"><span class="number">18</span><p>Breathe for 60 seconds before reacting.</p></article>
+        <article class="habit"><span class="number">19</span><p>Keep receipts, track your money weekly.</p></article>
+        <article class="habit"><span class="number">20</span><p>Put your goals somewhere you'll actually see them.</p></article>
+        <article class="habit"><span class="number">21</span><p>Make decisions once, not every day.</p></article>
+        <article class="habit"><span class="number">22</span><p>Ask more, talk less.</p></article>
+        <article class="habit"><span class="number">23</span><p>Finish the small task instead of postponing it.</p></article>
+        <article class="habit"><span class="number">24</span><p>Sit up straight, your body affects your mind.</p></article>
+        <article class="habit"><span class="number">25</span><p>Plan meals so you stop deciding hungry.</p></article>
+        <article class="habit"><span class="number">26</span><p>Keep one drawer, one bag, one space perfectly organized.</p></article>
+        <article class="habit"><span class="number">27</span><p>End conversations before you run out of energy.</p></article>
+        <article class="habit"><span class="number">28</span><p>Say no without over-explaining.</p></article>
+        <article class="habit"><span class="number">29</span><p>Check in with yourself once a day, honestly.</p></article>
+        <article class="habit"><span class="number">30</span><p>Keep your word, especially to yourself.</p></article>
+        <article class="habit"><span class="number">31</span><p>Move your body every single day, even lightly.</p></article>
+        <article class="habit"><span class="number">32</span><p>Write down three wins before sleep.</p></article>
+        <article class="habit"><span class="number">33</span><p>Cut caffeine after 2:00 p.m.</p></article>
+        <article class="habit"><span class="number">34</span><p>Learn the name of the person serving you.</p></article>
+        <article class="habit"><span class="number">35</span><p>Keep a list of ideas, not just tasks.</p></article>
+        <article class="habit"><span class="number">36</span><p>Review your week every Sunday.</p></article>
+        <article class="habit"><span class="number">37</span><p>Stop comparing your chapter one to their chapter 20.</p></article>
+        <article class="habit"><span class="number">38</span><p>Make your environment do the reminding.</p></article>
+        <article class="habit"><span class="number">39</span><p>Smile at strangers, it costs nothing.</p></article>
+        <article class="habit"><span class="number">40</span><p>Invest before you spend, not after.</p></article>
+        <article class="habit"><span class="number">41</span><p>Keep your circle small and honest.</p></article>
+        <article class="habit"><span class="number">42</span><p>Apologize fast when you're wrong.</p></article>
+        <article class="habit"><span class="number">43</span><p>Protect your mornings like they're sacred.</p></article>
+        <article class="habit"><span class="number">44</span><p>Journal when you're overwhelmed instead of venting.</p></article>
+        <article class="habit"><span class="number">45</span><p>Take one cold shower a week.</p></article>
+        <article class="habit"><span class="number">46</span><p>Unfollow accounts that make you feel small.</p></article>
+        <article class="habit"><span class="number">47</span><p>Ask: is this true or just a habit of thinking?</p></article>
+        <article class="habit"><span class="number">48</span><p>Keep a folder of compliments you've received.</p></article>
+        <article class="habit"><span class="number">49</span><p>Set a shutdown time for work every night.</p></article>
+        <article class="habit"><span class="number">50</span><p>Celebrate small wins out loud.</p></article>
+        <article class="habit"><span class="number">51</span><p>Stop waiting to feel ready, start anyway.</p></article>
+        <article class="habit"><span class="number">52</span><p>Learn one practical skill every few months.</p></article>
+        <article class="habit"><span class="number">53</span><p>Keep your promises visible, write them down.</p></article>
+        <article class="habit"><span class="number">54</span><p>Spend time outside without a destination.</p></article>
+        <article class="habit"><span class="number">55</span><p>Listen fully before forming your response.</p></article>
+        <article class="habit"><span class="number">56</span><p>Keep a done list, not just a to-do list.</p></article>
+        <article class="habit"><span class="number">57</span><p>Forgive people, mostly for your own peace.</p></article>
+        <article class="habit"><span class="number">58</span><p>Revisit your goals when you feel lost.</p></article>
+        <article class="habit"><span class="number">59</span><p>Choose discomfort over regret.</p></article>
+        <article class="habit"><span class="number">60</span><p>Stay consistent especially when no one's watching.</p></article>
+        <article class="habit"><span class="number">61</span><p>Remind yourself daily: small steps compound into a completely different life.</p></article>
+      </div>
+    </div>
+  </main>
+
+  <section class="closing">
+    <div class="wrap">
+      <blockquote>
+        “None of these are impressive on their own. That's the point.”
+      </blockquote>
+      <p class="small">
+        Nobody's life changes in one loud moment. It changes in 61 quiet ones,
+        repeated until they become who you are.
+      </p>
+    </div>
+  </section>
+
+
+  <div class="modal-backdrop" id="habitModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <button class="close" id="closeModal" aria-label="Close">×</button>
+      <div class="modal-number" id="modalNumber"></div>
+      <h3 id="modalTitle"></h3>
+      <p id="modalDescription"></p>
+    </div>
+  </div>
+
+  <footer class="wrap">
+    <span>61 Quiet Habits</span>
+    <span>One small decision at a time.</span>
+  </footer>
+
+  <script>
+    const descriptions = {"1": "Start your morning by hydrating before reaching for caffeine. The idea is to give your body a simple act of care before the day’s stimulation begins.", "2": "Do not pack every minute. Empty space gives you room to breathe, think, recover from delays, and avoid living in constant reaction mode.", "3": "Decide tomorrow’s three most important tasks tonight. You wake up knowing what matters instead of spending your best energy deciding.", "4": "You do not need to justify every choice. Save your energy for people who genuinely want to understand you, rather than trying to win approval.", "5": "Take a short walk without a screen. Removing constant input gives your mind a chance to notice your surroundings and process your thoughts.", "6": "Communicate clearly instead of making people guess. Saying what you actually mean early prevents confusion, resentment, and unnecessary conversations.", "7": "Make drinking water effortless by keeping it within reach. Good habits become easier when your environment reminds you instead of relying on memory.", "8": "Do the task you are avoiding first. Completing the uncomfortable thing early removes the background stress of knowing it is still waiting for you.", "9": "Move your body before opening the feed. Stretching creates a deliberate transition into the day instead of letting your phone decide your first action.", "10": "Remove one digital distraction that consistently consumes your attention. You do not always need more discipline; sometimes you need fewer temptations.", "11": "Slow down while eating. Paying attention to your food can help you notice fullness and turns a rushed routine into a more mindful pause.", "12": "Keep the phone outside the bedroom so sleep and rest are not competing with notifications, scrolling, and late-night stimulation.", "13": "Write one page without trying to make it impressive. The goal is to get thoughts out of your head and build the habit of honest expression.", "14": "Gratitude becomes meaningful when it is specific and sincere. Say thank you because you noticed what someone did, not simply because it is polite.", "15": "Multitasking often means rapidly switching attention. Give one thing your full focus, finish it, then move to the next.", "16": "Choose the stairs when it is practical. Small opportunities for movement add up without requiring a separate workout or a major lifestyle change.", "17": "Put your surroundings in order before beginning important work. A cleaner space removes small distractions and creates a clearer starting point.", "18": "Pause for one minute before responding when emotions are high. That small gap can turn an automatic reaction into a considered response.", "19": "Keep your receipts and review your spending weekly. Awareness comes before control; you cannot improve what you never look at.", "20": "Put your goals somewhere visible. Your environment can act as a reminder so your priorities do not disappear beneath everyday noise.", "21": "Make recurring decisions once by creating a simple rule or routine. This saves mental energy for decisions that actually deserve your attention.", "22": "Ask questions and listen instead of filling every silence. Curiosity helps you learn more and makes conversations less about proving yourself.", "23": "If something is genuinely small and finishable, finish it. Clearing tiny open loops reduces mental clutter and builds trust in your own follow-through.", "24": "Your posture can influence how you carry yourself and how you feel. Use simple physical alignment as a cue to become more present and confident.", "25": "Plan food before hunger takes over. Preparation reduces impulsive choices and makes the healthier or more intentional option easier to choose.", "26": "Create one small area that stays completely organized. A reliable pocket of order can make the rest of life feel less chaotic and teaches consistency.", "27": "Notice when a conversation is draining you and leave respectfully before you are depleted. Protecting energy is not the same as being uncaring.", "28": "A respectful no does not require a long defense. Clear boundaries become easier when you stop treating every refusal as something that needs approval.", "29": "Ask yourself once a day how you are actually doing. Honest self-checks help you notice stress, needs, and patterns before they become bigger problems.", "30": "Keep promises to yourself, not only promises made to other people. Self-trust grows when your actions repeatedly match the commitments you make.", "31": "Move every day, even if the movement is light. Consistency matters more than making every session intense or impressive.", "32": "Before sleeping, record three things you did well or that went right. This trains your attention to notice progress instead of ending every day focused on what remains unfinished.", "33": "Avoid caffeine after mid-afternoon if it interferes with your sleep. Protecting your evening recovery can improve the quality of the next day.", "34": "Learn the name of the person helping or serving you. Small acts of attention turn transactions into human interactions and practice genuine respect.", "35": "Capture ideas separately from your task list. Not every thought needs immediate action, but good ideas are easier to develop when they are not forgotten.", "36": "Use Sunday to review the previous week. Notice what worked, what did not, and what needs to change before another week starts running you.", "37": "Do not measure your beginning against someone else’s established results. Comparison becomes more useful when you compare your present self with your own past self.", "38": "Design your surroundings so they cue the behavior you want. A visible book, prepared clothes, or a ready water bottle can reduce the need for willpower.", "39": "Offer a small moment of warmth to strangers. A smile costs little and reminds you that ordinary interactions can still carry kindness.", "40": "Build saving or investing into your plan before discretionary spending. Pay your future self first instead of hoping there will be money left afterward.", "41": "Choose relationships where honesty and trust are possible. A smaller circle with real connection can be more valuable than a large circle built around appearances.", "42": "When you are wrong, repair it quickly. A sincere apology prevents pride from turning one mistake into a much larger relationship problem.", "43": "Protect your morning from unnecessary demands. The first part of the day can be used to set your direction before other people’s priorities take over.", "44": "When overwhelmed, write instead of immediately unloading everything onto someone else. Journaling creates enough distance to understand what you are actually feeling.", "45": "Treat a cold shower as an occasional practice in doing something uncomfortable on purpose. The point is less about the shower itself and more about practicing deliberate discomfort.", "46": "Unfollow accounts that repeatedly make you feel inadequate. Curating your feed is a way of protecting your attention and the standards you use to judge yourself.", "47": "Question the story in your head. Ask whether a thought is actually true or simply a familiar interpretation you have repeated for years.", "48": "Keep evidence of kind words and genuine appreciation. On difficult days, those reminders can help balance the mind’s tendency to remember criticism more vividly.", "49": "Choose a time when work ends. A clear shutdown ritual tells your brain that the workday is finished and creates space for recovery.", "50": "Let yourself acknowledge progress. Celebrating small wins reinforces effort and makes the process feel meaningful instead of waiting for one enormous result.", "51": "Do not make readiness a requirement for action. Begin with the smallest useful step and let confidence grow from experience rather than waiting for it first.", "52": "Regularly learn something practical you can actually use. Useful skills compound into greater independence and confidence over time.", "53": "Write down the promises and commitments that matter. Making them visible turns vague intentions into something concrete you can return to.", "54": "Go outside without needing to accomplish anything. A destination-free walk or quiet time outdoors creates space away from constant productivity.", "55": "Listen all the way through before preparing your answer. Understanding someone first is often more valuable than producing the fastest response.", "56": "Record what you completed, not only what remains. A done list makes invisible progress visible and gives you a more accurate picture of your effort.", "57": "Forgiveness does not mean approving what happened or restoring trust automatically. It means choosing not to keep carrying the same resentment everywhere you go.", "58": "When you feel lost, return to your goals instead of making random moves. Reconnecting with what matters can give you a direction for the next small step.", "59": "Choose the difficult action that your future self will respect over the easy action that may leave you with regret. Growth often asks for temporary discomfort.", "60": "Keep showing up when there is no audience. Consistency without recognition is what turns an intention into part of your character.", "61": "Small actions compound. One habit may seem insignificant today, but repeated choices gradually change your routines, your identity, and eventually the shape of your life."};
+    const modal = document.getElementById('habitModal');
+    const modalNumber = document.getElementById('modalNumber');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
+    const closeModal = document.getElementById('closeModal');
+
+    document.querySelectorAll('.habit').forEach((habit, index) => {
+      habit.setAttribute('tabindex', '0');
+      const number = index + 1;
+      const title = habit.querySelector('p').textContent;
+      const open = () => {
+        modalNumber.textContent = `Habit ${String(number).padStart(2, '0')}`;
+        modalTitle.textContent = title;
+        modalDescription.textContent = descriptions[number];
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        closeModal.focus();
+      };
+      habit.addEventListener('click', open);
+      habit.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+      });
+    });
+
+    const close = () => { modal.classList.remove('open'); document.body.style.overflow = ''; };
+    closeModal.addEventListener('click', close);
+    modal.addEventListener('click', e => { if (e.target === modal) close(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
+  </script>
+
+</body>
+</html>
