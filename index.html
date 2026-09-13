@@ -217,35 +217,138 @@
     .close:hover { background: #e8e6df; }
 
     @media (max-width: 700px) {
-      .wrap { width: min(100% - 28px, 1080px); }
+      .wrap { width: calc(100% - 24px); }
 
       header {
-        min-height: 76vh;
-        padding: 55px 0;
+        min-height: auto;
+        padding: 42px 0 46px;
       }
 
-      .intro { padding: 55px 0; }
+      .eyebrow {
+        margin-bottom: 18px;
+        font-size: 10px;
+      }
 
-      .habits-section { padding: 65px 0 80px; }
+      h1 {
+        font-size: clamp(42px, 13vw, 62px);
+        line-height: .96;
+      }
 
-      .habits { grid-template-columns: 1fr; }
+      .hero-copy {
+        margin-top: 20px;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .scroll {
+        margin-top: 28px;
+        font-size: 11px;
+      }
+
+      .intro { padding: 38px 0; }
+
+      .intro p {
+        font-size: 25px;
+        line-height: 1.18;
+      }
+
+      .habits-section { padding: 42px 0 52px; }
 
       .section-heading {
         align-items: start;
         flex-direction: column;
-        gap: 10px;
+        gap: 5px;
+        margin-bottom: 18px;
+      }
+
+      .section-heading h2 { font-size: 34px; }
+      .section-heading span { font-size: 12px; }
+
+      .habits {
+        grid-template-columns: 1fr;
+        gap: 8px;
       }
 
       .habit {
-        grid-template-columns: 38px 1fr;
-        padding: 19px 17px;
+        grid-template-columns: 31px 1fr;
+        gap: 10px;
+        padding: 15px 14px;
+        border-radius: 13px;
       }
 
-      .closing { padding: 80px 0 90px; }
+      .number {
+        font-size: 11px;
+        padding-top: 2px;
+      }
+
+      .habit p {
+        font-size: 14px;
+        line-height: 1.38;
+      }
+
+      .habit::after {
+        right: 10px;
+        bottom: 8px;
+        font-size: 11px;
+      }
+
+      .closing { padding: 58px 0 64px; }
+
+      .closing blockquote {
+        font-size: 34px;
+        line-height: 1.08;
+      }
+
+      .closing .small {
+        margin-top: 20px;
+        font-size: 14px;
+        line-height: 1.5;
+      }
 
       footer {
-        flex-direction: column;
+        padding: 18px 0 24px;
+        flex-direction: row;
+        align-items: center;
+        font-size: 10px;
       }
+
+      .modal-backdrop {
+        padding: 12px;
+        align-items: end;
+      }
+
+      .modal {
+        width: 100%;
+        border-radius: 20px;
+        padding: 25px 20px 24px;
+        max-height: 82vh;
+        overflow-y: auto;
+      }
+
+      .modal h3 {
+        margin-top: 8px;
+        margin-bottom: 12px;
+        font-size: 25px;
+      }
+
+      .modal p {
+        font-size: 15px;
+        line-height: 1.55;
+      }
+
+      .close {
+        top: 12px;
+        right: 12px;
+        width: 34px;
+        height: 34px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      header { padding-top: 34px; padding-bottom: 38px; }
+      h1 { font-size: 40px; }
+      .intro p { font-size: 22px; }
+      .habit p { font-size: 13.5px; }
     }
 
     @media (prefers-reduced-motion: no-preference) {
